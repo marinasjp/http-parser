@@ -13,7 +13,7 @@ namespace http{
     public:
         TcpServer(std::string ip_address, int port);
         ~TcpServer();
-        void startListen();
+        int startListen();
 
     private:
         std::string ipv4_addr;
@@ -22,14 +22,13 @@ namespace http{
         int new_socket;
         int size;
         long msg;
-        struct sockaddr_in socketAddr;
+        struct sockaddr_in addr;
         std::string response;
-
-        int startServer();
+        int bindServer();
         void closeServer();
-        void acceptConnection(int &new_socket);
+        int acceptConnection(int &new_socket);
         std::string buildResponse();
-        void sendResponse();
+        int sendResponse();
     };
 
 } // namespace http
